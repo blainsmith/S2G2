@@ -11,7 +11,8 @@ import (
 )
 
 func main() {
-	port := os.Getenv("BACKEND_PORT")
+	port := os.Getenv("PORT")
+	staticDir := os.Getenv("STATIC_DIR")
 
 	httpServer := otohttp.NewServer()
 
@@ -22,5 +23,7 @@ func main() {
 	rpcserver.RegisterMathService(httpServer, &mathService)
 
 	http.Handle("/oto/", httpServer)
+	http.Handle("/", http.FileServer(http.Dir(staticDir)))
+
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
