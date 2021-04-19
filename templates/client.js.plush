@@ -11,7 +11,7 @@
 			'Content-Type': 'application/json',
 		}
 		<%= camelize_down(method.InputObject.TypeName) %> = <%= camelize_down(method.InputObject.TypeName) %> || {}
-		const response = await fetch('/oto/<%= service.Name %>.<%= method.Name %>', {
+		const response = await fetch('<%= params["backend_scheme"] %>://<%= params["backend_host"] %><%= if (params["backend_port"] != "") {%>:<%= params["backend_port"] %><% } %><%= params["backend_path"] %><%= service.Name %>.<%= method.Name %>', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(<%= camelize_down(method.InputObject.TypeName) %>)

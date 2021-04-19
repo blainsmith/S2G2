@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/blainsmith/go-svelte-rpc-starter/backend/rpc"
 	"github.com/blainsmith/go-svelte-rpc-starter/backend/rpc/rpcserver"
@@ -10,6 +11,8 @@ import (
 )
 
 func main() {
+	port := os.Getenv("BACKEND_PORT")
+
 	httpServer := otohttp.NewServer()
 
 	greeterService := rpc.GreeterService{}
@@ -19,5 +22,5 @@ func main() {
 	rpcserver.RegisterMathService(httpServer, &mathService)
 
 	http.Handle("/oto/", httpServer)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

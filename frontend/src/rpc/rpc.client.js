@@ -13,7 +13,7 @@ export class GreeterService {
 			'Content-Type': 'application/json',
 		}
 		greetRequest = greetRequest || {}
-		const response = await fetch('/oto/GreeterService.Greet', {
+		const response = await fetch('http://localhost:8080/oto/GreeterService.Greet', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(greetRequest)
@@ -36,7 +36,7 @@ export class MathService {
 			'Content-Type': 'application/json',
 		}
 		addRequest = addRequest || {}
-		const response = await fetch('/oto/MathService.Add', {
+		const response = await fetch('http://localhost:8080/oto/MathService.Add', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(addRequest)
@@ -55,7 +55,7 @@ export class MathService {
 			'Content-Type': 'application/json',
 		}
 		subtractRequest = subtractRequest || {}
-		const response = await fetch('/oto/MathService.Subtract', {
+		const response = await fetch('http://localhost:8080/oto/MathService.Subtract', {
 			method: 'POST',
 			headers: headers,
 			body: JSON.stringify(subtractRequest)
